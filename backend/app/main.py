@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from app.config import settings
 from app.database import engine, Base, SessionLocal
-from app.api import auth, transactions, reconciliation, anomalies, journals, assistant, reports, settings as settings_api
+from app.api import auth, transactions, reconciliation, settings as settings_api
 from app.services.synthetic import seed_database_if_empty
 
 @asynccontextmanager
@@ -42,6 +42,7 @@ api_prefix = settings.API_V1_STR
 app.include_router(auth.router, prefix=api_prefix)
 app.include_router(transactions.router, prefix=api_prefix)
 app.include_router(reconciliation.router, prefix=api_prefix)
+app.include_router(settings_api.router, prefix=api_prefix)
 
 @app.get("/api", include_in_schema=False)
 @app.get("/api/", include_in_schema=False)

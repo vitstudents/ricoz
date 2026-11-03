@@ -211,3 +211,4 @@ Demonstrating technical viability, algorithmic accuracy, and production readines
 **Demo & Repository:**
 * **Live App:** [https://work-hazel-one.vercel.app](https://work-hazel-one.vercel.app)
 * **GitHub Repository:** [https://github.com/vitstudents/ricoz](https://github.com/vitstudents/ricoz)
+
