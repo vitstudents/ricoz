@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "framework": "vite",
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
   "rewrites": [
@@ -8,7 +9,7 @@
       "destination": "/api/index.py"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api/|assets/|favicon\\.svg|icons\\.svg).*)",
       "destination": "/index.html"
     }
   ]
