@@ -10,3 +10,6 @@ __pycache__/
 *.db-wal
 _uv/
 .env
+
+.vercel
+.env*
