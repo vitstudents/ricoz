@@ -13,3 +13,5 @@ _uv/
 
 .vercel
 .env*
+
+.vercel_python_packages/
