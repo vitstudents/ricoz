@@ -219,3 +219,4 @@ Two-Way NetSuite & QuickBooks Write Sync Phase 3     [REMAINING]   Phase 3 (100%
 Multi-Entity Tax & Intercompany Close    Phase 3     [REMAINING]   Phase 3 (100%)
 Enterprise RBAC, SAML/SSO & SOC2 Pack   Phase 3     [REMAINING]   Phase 3 (100%)
 ================================================================================
+
