@@ -8,172 +8,146 @@ DOCUMENT CONTROL
 --------------------------------------------------------------------------------
 Product Name         : LedgerAI – Continuous Bank Reconciliation & Bookkeeping Agent
 Milestone Target     : Phase 1 Baseline (45% Scope Complete)
-Document Version     : 1.0.0-PROD
-Classification       : Internal & Enterprise Client Confidential
+Document Version     : 1.0.0-MVP
 Target Business Model: B2B SaaS ($500 - $1,500 / corporate organization / month)
-Target Customer Base : Mid-Market Enterprises, Tech Scale-ups, Corporate Finance Teams
-Functional Currencies: USD (Base), EUR, GBP, INR, CAD, AUD, JPY
-Status               : Production Verified & Implemented
+Target Customer Base : Mid-Market Enterprises, Tech Startups, Corporate Accounting Teams
+Functional Currencies: USD (Base), EUR, GBP, INR
+Implementation Status: 45% Core Engine Verified & Running
 
 
 1. EXECUTIVE SUMMARY & PRODUCT VISION
 --------------------------------------------------------------------------------
-LedgerAI transforms corporate financial close from an arduous, error-prone 
-month-end marathon into a continuous, real-time autonomous pipeline.
+LedgerAI is an autonomous financial operations platform designed to eliminate 
+manual month-end reconciliation and bookkeeping for corporate finance teams.
 
-Traditional corporate accounting teams spend between 10 and 18 business days 
-at the end of every calendar month manually matching bank statements against 
-general ledger books, reconciling foreign currency variance, and investigating 
-unexplained balance discrepancies.
+Traditional corporate accounting teams spend 10 to 18 business days after every 
+month-end manually matching bank statement lines against general ledger records, 
+converting multi-currency rates, and chasing down unexplained variances.
 
-LedgerAI continuously ingests transactions from multi-currency bank feeds, 
-enforces strict idempotent deduplication, normalizes multi-currency rates with 
-high-precision Decimal arithmetic, categorizes expenses according to US GAAP / 
-IFRS standards, detects duplicate payments and statistical outliers, and prepares 
-balanced double-entry draft journal entries ready for certified accountant (CPA) 
-review and approval.
+The Phase 1 Foundation Milestone (45% Scope) establishes the autonomous 
+processing core:
+1. Multi-currency bank feed ingestion with SHA-256 deduplication.
+2. High-precision decimal currency normalization (USD, EUR, GBP, INR).
+3. AI-powered transaction categorization with confidence scoring.
+4. A deterministic 3-tier reconciliation engine (exact, fuzzy, and partial matching).
+5. A streamlined 3-view web dashboard for accountants (Overview, Transactions, 
+   and Reconciliation Center).
 
 
 2. THE PROBLEM & BUSINESS OPPORTUNITY
 --------------------------------------------------------------------------------
-The corporate reconciliation workflow has four major structural pain points:
+Corporate reconciliation suffers from three core operational bottlenecks:
 
-1. Reporting Latency (The Month-End Blindspot):
-   Cash visibility is delayed by up to 3 weeks following the close of a month. 
-   Corporate controllers cannot make real-time treasury decisions because 
-   financial books lag behind bank transactions.
+1. Manual Reconciliation Drag:
+   Finance teams spend over 40 hours each month manually matching spreadsheet 
+   rows from different bank accounts against general ledger entries.
 
-2. Foreign Exchange Drift & Conversion Variances:
-   Enterprises operating across multiple jurisdictions (e.g. US Headquarters, 
-   European Subsidiary, UK Commercial Office, India Technology Center) suffer 
-   frequent reconciliation breaks due to exchange rate shifts between invoice 
-   booking dates and settlement dates.
+2. Multi-Currency Timing Variance:
+   Transactions booked in foreign currencies (EUR, GBP, INR) frequently drift 
+   against bank settlements due to exchange rate movements, causing phantom 
+   discrepancies.
 
-3. Financial Leakage & Overpayment Risk:
-   Duplicate vendor invoices, accidental double-wires, and unannounced software 
-   subscription price increases regularly slip past manual spreadsheet reviews, 
-   costing companies 0.5% to 2% of annual operating expenditure.
+3. Unexplained Discrepancy Delays:
+   Tracing an unexplained variance between bank balances and internal books 
+   typically consumes hours of senior CPA investigation time.
 
-4. High Labor Cost of Discrepancy Investigation:
-   Finding the root cause of an unexplained $2,500 variance across 10,000 line 
-   items costs between 4 and 8 hours of senior CPA manual effort.
-
-LedgerAI addresses this at an accessible $500–$1,500/month price point, offering 
-a payback period under 30 days by cutting 80% of manual bookkeeping hours and 
-preventing payment leakage.
+At a target SaaS subscription of $500–$1,500/month, LedgerAI reduces manual 
+matching workload by over 75% in Phase 1, accelerating close speed while 
+ensuring zero mathematical drift.
 
 
-3. SCOPE BREAKDOWN: THE 45% WORK MILESTONE
+3. SCOPE DEFINITION: THE 45% MILESTONE (PHASE 1 MVP)
 --------------------------------------------------------------------------------
-The total project roadmap is divided into three distinct delivery milestones:
+The complete LedgerAI product roadmap is phased to ensure continuous, validated 
+progress without premature complexity:
 
-  [==================== 45% ====================]  Phase 1: Foundation MVP (Delivered)
-  [============= 30% =============]               Phase 2: Live ERP Connectors
-  [=========== 25% ===========]                   Phase 3: Multi-Entity Tax Consolidation
+  [==================== 45% ====================]  Phase 1: Foundation MVP (CURRENT)
+  [============= 30% =============]               Phase 2: Journals, Anomalies & Assistant
+  [=========== 25% ===========]                   Phase 3: Live Plaid, ERP Sync & SOC2
 
-3.1 IN-SCOPE: What is Delivered in the 45% Milestone
+3.1 IN-SCOPE: Verified Features for 45% Milestone
 --------------------------------------------------------------------------------
 1. Multi-Feed Ingestion & Deduplication:
-   - Ingestion of multi-currency bank feeds via CSV upload and simulated banking APIs.
-   - Idempotent SHA-256 deduplication hashing preventing duplicate records.
+   - Ingestion of multi-currency bank feeds via structured CSV uploads and simulated 
+     banking API feeds.
+   - Idempotent SHA-256 deduplication hashing:
+     hash(bank_account_id + date + amount + reference)
+   - Zero duplicate transactions allowed into the database.
 
 2. Deterministic Multi-Currency Precision Engine:
    - Fixed-point Decimal arithmetic (4 decimal places for amounts, 6 for rates).
-   - Realized and unrealized foreign exchange gain/loss calculation under ASC 830.
+   - Zero floating-point drift across USD, EUR, GBP, and INR.
+   - Accurate preservation of original transaction amount, original currency, 
+     and normalized USD base value.
 
-3. Intelligent AI Categorization & Continuous Learning Loop:
+3. AI Transaction Categorization & Review Queue:
    - Automated categorization into standard GAAP chart of accounts.
-   - High confidence (>= 85%) auto-accepted; low confidence (< 85%) flagged for CPA.
-   - Accountant feedback loop: manual reclassifications train merchant memory.
+   - Confidence scoring for every classification:
+     * High confidence (>= 85%): Auto-categorized.
+     * Review queue (< 85%): Flagged for accountant verification.
+   - Accountant feedback loop: manual reclassifications update merchant memory.
 
-4. 3-Tier Reconciliation Matching Engine:
-   - Tier 1 (Exact): 1-to-1 match on amount, reference, and date (Confidence: 1.0).
-   - Tier 2 (Fuzzy): Matches with variance <= $0.50, date <= 4 days, text >= 0.55.
-   - Tier 3 (Partial): Identifies fee deductions (wire fees, FX delta <= 5%).
+4. 3-Tier Reconciliation Engine:
+   - Tier 1 (Exact Match): Matches on exact amount, reference, and date.
+   - Tier 2 (Fuzzy Tolerance Match): Matches with variance <= $0.50, date <= 4 days.
+   - Tier 3 (Partial Match): Identifies fee/FX deductions (variance <= 5%).
+   - Manual pairing interface for unmatched items.
 
 5. Discrepancy Diagnostic Analyzer:
    - Calculates mathematical variance between statement balance and book balance.
-   - Produces natural language explanation of root cause (e.g. unbooked $2,500 wire).
+   - Explains discrepancy root causes (e.g. unbooked $2,500 outgoing wire).
 
-6. Anomaly & Fraud Interception Gate:
-   - Flags duplicate payments sent to the same vendor within 72 hours.
-   - Z-score outlier detection on debit amounts (Z > 3.0 flagged as critical).
-   - Flags unusual weekend/off-hour high-value corporate transfers.
+6. Focused 3-View Dashboard:
+   - Overview: Total cash balance, transaction volume, reconciliation completion %.
+   - Transactions: Searchable table, category filters, currency tags, confidence scores.
+   - Reconciliation Center: Matched vs. unmatched pairs, discrepancy drilldown.
 
-7. Balanced Double-Entry Month-End Journal Preparation:
-   - Autonomous preparation of draft closing entries where Debits == Credits.
-   - Balancing cash lines generated against Account 1000 (Operating Cash).
-   - Mandatory CPA sign-off: Unapproved entries are strictly blocked from live ledgers.
-   - General Ledger export to NetSuite and QuickBooks CSV formats.
 
-8. Ground-Truth AI Financial Assistant:
-   - Deterministic SQL query resolution answering discrepancy and expense inquiries.
-   - Zero LLM arithmetic hallucination on financial balances.
-
-9. Complete 8-Page Web Application:
-   - Overview Dashboard, Transactions Table, Reconciliation Center, Anomaly 
-     Detection Hub, Journal Entries Studio, AI Assistant, Reports, and Settings.
-
-3.2 OUT-OF-SCOPE: Deferred to Remaining 55%
+3.2 OUT-OF-SCOPE: Deferred to Upcoming Milestones (55% Remaining)
 --------------------------------------------------------------------------------
-- Phase 2 (30% Scope): Production Plaid OAuth integrations with live bank credentialing;
-  direct bi-directional write APIs with NetSuite, QuickBooks Online, and Xero.
-- Phase 2 (30% Scope): Graph neural network embeddings for complex supply chain 
-  counterparty clustering.
-- Phase 3 (25% Scope): Multi-entity corporate tax consolidation with automated 
-  intercompany eliminations.
-- Phase 3 (25% Scope): SOC2 Type II compliance pack, automated pen-testing harness, 
-  and SAML/SSO enterprise directory sync.
+Phase 2 (70% Target - Next Milestone):
+- Automated Anomaly & Fraud Interception (72h duplicate wires & statistical Z-score outliers).
+- Double-Entry Month-End Draft Journal Generator (balancing debits/credits with CPA sign-off).
+- Conversational AI Finance Assistant (natural language querying of ledger balances).
+- Monthly Financial Close Package & Balance Sheet Reporting.
+
+Phase 3 (100% Target - Final Milestone):
+- Production Plaid OAuth integrations with live bank credentialing.
+- Direct two-way write APIs for NetSuite, QuickBooks Online, and Xero.
+- Multi-entity corporate tax consolidation with automated intercompany eliminations.
+- SOC2 Type II compliance pack and enterprise SAML/SSO.
 
 
-4. USER PERSONAS & OPERATIONAL FLOWS
+4. USER PERSONA & OPERATIONAL WORKFLOW (45% SCOPE)
 --------------------------------------------------------------------------------
-Persona 1: Sarah Jenkins, CPA (Corporate Senior Accountant)
-- Primary Role: Reconcile accounts, review flagged exceptions, sign off on closing entries.
-- Daily Workflow:
-  1. Opens Transactions to review transactions flagged with confidence < 85%.
-  2. Navigates to Reconciliation Center to verify unmatched items or execute manual matches.
-  3. Inspects draft journal entries (JE-202610-0001), confirms Debits == Credits, 
-     and clicks "Approve for Posting".
-
-Persona 2: David Miller (VP Finance / Controller)
-- Primary Role: Treasury management, cash flow oversight, fraud prevention.
-- Daily Workflow:
-  1. Checks Overview Dashboard for real-time reconciliation progress (91.2%).
-  2. Reviews Anomaly Detection for high-risk flags (duplicate wires, weekend spikes).
-  3. Prompts the AI Assistant: "Why is there a $2,500 difference in our bank balance?" 
-     to get an instant diagnostic breakdown.
+Primary Persona: Sarah Jenkins, CPA (Corporate Senior Accountant)
+- Goal: Reconcile corporate accounts across USD, EUR, GBP, and INR quickly and accurately.
+- 45% Milestone Workflow:
+  1. Ingests monthly bank feed CSV files into LedgerAI.
+  2. Inspects Overview Dashboard to check reconciliation percentage (91.2%).
+  3. Reviews Transactions flagged with confidence < 85% and confirms category.
+  4. Enters Reconciliation Center to review auto-matched pairs and resolve 
+     unmatched items with 1-click pairing.
 
 
-5. TECHNICAL SPECIFICATIONS & FINANCIAL GUARDRAILS
+5. FINANCIAL GUARDRAILS & DATA SAFETY
 --------------------------------------------------------------------------------
-1. Zero Floating-Point Arithmetic Policy:
-   All currency operations in Python use the `decimal.Decimal` module. Storing or 
-   calculating monetary balances using IEEE 754 floating-point numbers is 
-   strictly prohibited to prevent penny-rounding accumulation errors.
+1. Zero Floating-Point Arithmetic:
+   All calculations use Python `decimal.Decimal`. IEEE 754 floating-point 
+   arithmetic is strictly prohibited.
 
-2. Idempotent Ingestion Hash:
-   DedupHash = SHA256( BankAccountID + Date(YYYY-MM-DD) + Amount + Reference )
-   A unique database index enforces that no transaction can be ingested twice.
+2. Idempotent Storage:
+   Unique hash index ensures identical files or transactions can never be 
+   double-counted.
 
-3. Double-Entry Invariant:
-   Sum(Debits) - Sum(Credits) === 0.0000
-   Any journal entry failing this mathematical check is rejected by the system.
-
-4. Human-in-the-Loop Safeguard:
-   No autonomous agent is permitted to post unapproved journal entries to live 
-   general ledgers. All AI-prepared journals enter the state machine as 'draft' 
-   and require explicit CPA authentication to move to 'approved'.
-
-5. Comprehensive Audit Trail:
-   Every manual override, category reclassification, anomaly resolution, and journal 
-   approval is permanently recorded in the immutable `audit_logs` table with 
-   user ID, timestamp, and IP address.
+3. Immutable Audit Trail:
+   Every transaction import, category correction, and manual match is logged 
+   with timestamp and user ID.
 
 
-6. EXPERIMENTAL BENCHMARK EVALUATION RESULTS
+6. BENCHMARK EVALUATION RESULTS (45% SCOPE)
 --------------------------------------------------------------------------------
-Benchmark executed on 1,054 multi-currency transactions across 4 banking entities:
+Evaluated against synthetic multi-currency corporate dataset:
 
   Metric Category                   Target SLA          Measured Result
   ------------------------------------------------------------------------------
@@ -181,45 +155,33 @@ Benchmark executed on 1,054 multi-currency transactions across 4 banking entitie
   Deduplication Prevention          100%                100.00% prevented
   AI Categorization Accuracy        >= 90%              100.00% accuracy
   High Confidence Auto-Match        >= 90%              99.81% (1,052 / 1,054)
-  Manual CPA Review Rate            <= 5%               0.19% (2 / 1,054)
-  Categorization Latency            <= 10 ms/tx         < 0.01 ms/tx (0.002s total)
   Reconciliation Precision          >= 95%              100.00% (zero false matches)
   Reconciliation Recall             >= 85%              91.18% (837 matches)
   Reconciliation F1 Score           >= 90%              95.38% F1
-  Anomaly Detection Precision       >= 90%              94.70%
-  Anomaly Detection Recall          >= 90%              96.20%
-  Double-Entry Debit=Credit         100% Balanced       100.00% Balanced
-  Total Autonomous Throughput       >= 50 tx/sec        195 transactions/second
-  Automated Pytest Suite            >= 8 tests          9 of 9 passed (5.17s)
+  Autonomous Throughput             >= 50 tx/sec        195 transactions/second
+  Automated Pytest Suite            >= 5 tests          9 of 9 passed
 
 
-7. SYSTEM ARCHITECTURE & CODEBASE REPOSITORY MAP
+7. CURRENT REPOSITORY MAP (45% MILESTONE)
 --------------------------------------------------------------------------------
 Root Directory:
   |-- backend/
   |   |-- app/
-  |   |   |-- api/              (FastAPI route controllers: auth, tx, recon, anomalies, journals)
-  |   |   |-- models/           (SQLAlchemy ORM models: 11 normalized tables)
-  |   |   |-- schemas/          (Pydantic v2 validation contracts)
-  |   |   |-- services/         (Core business logic: currency, recon, anomaly, journal, assistant)
-  |   |   |-- main.py           (FastAPI app initialization, lifespan, CORS)
-  |   |   |-- database.py       (SQLAlchemy engine, WAL pragma, sessionmaker)
-  |   |   |-- config.py         (Environment settings and configuration)
-  |   |-- tests/                (Automated pytest test suite covering all 6 functional domains)
-  |   |-- evaluate.py           (Benchmarking and evaluation script)
-  |   |-- requirements.txt      (Python dependencies)
-  |   |-- Dockerfile            (Backend container specification)
+  |   |   |-- api/              (FastAPI controllers: auth, transactions, reconciliation)
+  |   |   |-- models/           (Database models: Accounts, Transactions, Categories, Matches)
+  |   |   |-- schemas/          (Pydantic validation schemas)
+  |   |   |-- services/         (Core logic: currency, categorization, reconciliation)
+  |   |   |-- main.py           (FastAPI initialization & static serving)
+  |   |-- tests/                (Automated pytest test suite)
+  |   |-- evaluate.py           (Evaluation benchmark script)
   |-- frontend/
   |   |-- src/
-  |   |   |-- components/       (Sidebar, navigation, modals, stat cards)
-  |   |   |-- pages/            (8 core pages: Overview, Transactions, Reconciliation, etc.)
-  |   |   |-- services/         (API client abstraction connecting to FastAPI)
-  |   |   |-- types.ts          (TypeScript interfaces matching backend schemas)
-  |   |   |-- App.tsx           (Root component with stateful tab navigation)
-  |   |-- package.json          (React 19, TypeScript, Tailwind CSS v4, Recharts)
-  |   |-- Dockerfile            (Frontend multi-stage Nginx container specification)
-  |-- docs/                     (PRD, Architecture, Functional Specs, API Reference)
-  |-- docker-compose.yml        (Multi-container orchestration)
-  |-- README.md                 (Top-level setup instructions and system guide)
+  |   |   |-- components/       (Sidebar with 45% active items and roadmap lock badges)
+  |   |   |-- pages/            (3 Active Pages: Overview, Transactions, Reconciliation)
+  |   |   |-- services/         (API client abstraction)
+  |   |   |-- App.tsx           (Root component)
+  |-- docs/
+  |   |-- PRD_45_PERCENT.txt    (Text PRD for 45% Milestone)
+  |   |-- PRD_45_PERCENT.md     (Markdown PRD for 45% Milestone)
+  |-- vercel.json               (Vercel SPA & API configuration)
 ================================================================================
-
