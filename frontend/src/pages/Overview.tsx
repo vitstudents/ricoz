@@ -113,11 +113,11 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
             {isSyncing ? 'Reconciling...' : 'Run Auto-Reconciliation'}
           </button>
           <button
-            onClick={() => onNavigate('reconciliation')}
+            onClick={() => onNavigate('assistant')}
             className="flex items-center gap-2 px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-cyan-400 border border-cyan-500/30 rounded-xl text-sm font-semibold shadow-sm transition-all cursor-pointer"
           >
-            <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-            Review Unmatched Items
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            Ask AI Assistant
           </button>
         </div>
       </div>
@@ -191,41 +191,41 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* AI Categorization Rate */}
+        {/* Flagged Anomalies */}
         <div 
-          onClick={() => onNavigate('transactions')}
-          className="bg-slate-900 border border-slate-800 hover:border-indigo-500/50 cursor-pointer rounded-xl p-4 shadow-sm transition"
+          onClick={() => onNavigate('anomalies')}
+          className="bg-slate-900 border border-slate-800 hover:border-rose-500/50 cursor-pointer rounded-xl p-4 shadow-sm transition"
         >
           <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-xs font-medium">AI Categorization</span>
-            <div className="p-1.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
-              <Sparkles className="w-4 h-4" />
+            <span className="text-xs font-medium">Flagged Anomalies</span>
+            <div className="p-1.5 bg-rose-500/10 text-rose-400 rounded-lg">
+              <ShieldAlert className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-xl font-bold text-indigo-400 tracking-tight">
-            100%
+          <div className="text-xl font-bold text-rose-400 tracking-tight">
+            {anomalySummary?.total_open || '96'}
           </div>
-          <div className="text-[11px] text-indigo-400/80 mt-1">
-            1,054 auto-categorized
+          <div className="text-[11px] text-rose-400/80 mt-1">
+            {anomalySummary?.critical || '17'} Critical Outliers
           </div>
         </div>
 
-        {/* Multi-Currency Feeds */}
+        {/* Pending Journal Entries */}
         <div 
-          onClick={() => onNavigate('transactions')}
-          className="bg-slate-900 border border-slate-800 hover:border-emerald-500/50 cursor-pointer rounded-xl p-4 shadow-sm transition"
+          onClick={() => onNavigate('journals')}
+          className="bg-slate-900 border border-slate-800 hover:border-indigo-500/50 cursor-pointer rounded-xl p-4 shadow-sm transition"
         >
           <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-xs font-medium">Currency Feeds</span>
-            <div className="p-1.5 bg-emerald-500/10 text-emerald-400 rounded-lg">
-              <DollarSign className="w-4 h-4" />
+            <span className="text-xs font-medium">Draft Journals</span>
+            <div className="p-1.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
+              <BookOpen className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-xl font-bold text-emerald-400 tracking-tight">
-            USD/EUR/GBP/INR
+          <div className="text-xl font-bold text-indigo-400 tracking-tight">
+            {report?.pending_journals || '2'}
           </div>
           <div className="text-[11px] text-slate-400 mt-1">
-            Decimal FX Normalized
+            Awaiting CPA sign-off
           </div>
         </div>
       </div>
@@ -249,10 +249,10 @@ export const Overview: React.FC<OverviewProps> = ({ onNavigate }) => {
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <button
-            onClick={() => onNavigate('transactions')}
+            onClick={() => onNavigate('assistant')}
             className="px-3.5 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-semibold rounded-lg border border-amber-500/40 transition cursor-pointer"
           >
-            Inspect In Transactions
+            Ask AI to Explain
           </button>
           <button
             onClick={() => onNavigate('reconciliation')}

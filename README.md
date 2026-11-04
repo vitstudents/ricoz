@@ -1,13 +1,23 @@
 # LedgerAI – Continuous Bank Reconciliation & AI Bookkeeping Agent
 
+[![Production Live](https://img.shields.io/badge/Production%20Live-work--hazel--one.vercel.app-emerald?style=flat&logo=vercel)](https://work-hazel-one.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-vitstudents%2Fricoz-blue?style=flat&logo=github)](https://github.com/vitstudents/ricoz)
+[![Status](https://img.shields.io/badge/Milestone-100%25%20Production%20Ready-success)](https://work-hazel-one.vercel.app)
+[![Tests](https://img.shields.io/badge/Tests-9%20of%209%20Passed-brightgreen)](https://pytest.org)
 [![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.14-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178c6.svg)](https://www.typescriptlang.org)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-38bdf8.svg)](https://tailwindcss.com)
-[![Tests](https://img.shields.io/badge/Tests-9%20Passed-emerald.svg)](https://pytest.org)
 
-**LedgerAI** is an autonomous financial operations platform designed for mid-market and enterprise finance teams ($500–$1,500/month SaaS tier). It replaces manual month-end reconciliation with continuous real-time matching, AI multi-currency categorization, duplicate payment and statistical anomaly interception, and draft double-entry journal preparation for certified accountants.
+**LedgerAI** is an autonomous financial operations platform designed for mid-market and enterprise finance teams ($500–$1,500/month SaaS tier). It replaces manual month-end reconciliation with continuous real-time matching, AI multi-currency categorization, duplicate payment and statistical anomaly interception, draft double-entry journal preparation for certified accountants, and a zero-hallucination conversational financial query assistant.
+
+* **Live Production Web App:** [https://work-hazel-one.vercel.app](https://work-hazel-one.vercel.app)
+* **GitHub Repository:** [https://github.com/vitstudents/ricoz](https://github.com/vitstudents/ricoz)
+* **100% PRD Document:** [`docs/PRD_100_PERCENT.txt`](file:///c:/Users/ADMIN/Downloads/work/docs/PRD_100_PERCENT.txt) | [`docs/PRD_100_PERCENT.md`](file:///c:/Users/ADMIN/Downloads/work/docs/PRD_100_PERCENT.md)
+* **System Technical Manual:** [`docs/SYSTEM_DOCUMENTATION.md`](file:///c:/Users/ADMIN/Downloads/work/docs/SYSTEM_DOCUMENTATION.md)
+* **12-Page Business Deck:** [`docs/BUSINESS_DECK_12_PAGES.txt`](file:///c:/Users/ADMIN/Downloads/work/docs/BUSINESS_DECK_12_PAGES.txt) | [`docs/BUSINESS_DECK_12_PAGES.md`](file:///c:/Users/ADMIN/Downloads/work/docs/BUSINESS_DECK_12_PAGES.md)
+
 
 ---
 

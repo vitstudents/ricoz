@@ -6,7 +6,10 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from app.config import settings
 from app.database import engine, Base, SessionLocal
-from app.api import auth, transactions, reconciliation, settings as settings_api
+from app.api import (
+    auth, transactions, reconciliation, anomalies, 
+    journals, assistant, reports, settings as settings_api
+)
 from app.services.synthetic import seed_database_if_empty
 
 @asynccontextmanager
@@ -37,11 +40,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mount Active Phase 1 (45% Scope) API routes under /api/v1
+# Mount Full 100% Production API routes under /api/v1
 api_prefix = settings.API_V1_STR
 app.include_router(auth.router, prefix=api_prefix)
 app.include_router(transactions.router, prefix=api_prefix)
 app.include_router(reconciliation.router, prefix=api_prefix)
+app.include_router(anomalies.router, prefix=api_prefix)
+app.include_router(journals.router, prefix=api_prefix)
+app.include_router(assistant.router, prefix=api_prefix)
+app.include_router(reports.router, prefix=api_prefix)
 app.include_router(settings_api.router, prefix=api_prefix)
 
 @app.get("/api", include_in_schema=False)
@@ -53,22 +60,19 @@ app.include_router(settings_api.router, prefix=api_prefix)
 def api_index():
     return {
         "service": settings.PROJECT_NAME,
-        "milestone": "Phase 1 Baseline (45% Scope)",
+        "milestone": "100% Production Ready Autonomous Platform",
         "version": settings.VERSION,
         "status": "operational",
         "docs_url": "/docs",
-        "active_endpoints": {
+        "modules": {
             "transactions": "/api/v1/transactions",
-            "reconciliation_status": "/api/v1/reconciliation/status",
-            "reconciliation_run": "/api/v1/reconciliation/run/{bank_account_id}",
-            "reconciliation_unmatched": "/api/v1/reconciliation/unmatched/{bank_account_id}"
-        },
-        "upcoming_phase_2": [
-            "anomalies",
-            "double_entry_journals",
-            "conversational_assistant",
-            "close_reports"
-        ]
+            "reconciliation": "/api/v1/reconciliation/status",
+            "anomalies": "/api/v1/anomalies",
+            "journals": "/api/v1/journals",
+            "assistant": "/api/v1/assistant/query",
+            "reports": "/api/v1/reports/monthly-summary",
+            "settings": "/api/v1/settings/accounts"
+        }
     }
 
 
