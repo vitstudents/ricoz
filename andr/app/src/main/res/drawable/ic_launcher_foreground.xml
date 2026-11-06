@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Rounded Background Badge -->
+    <path
+        android:fillColor="#4F46E5"
+        android:pathData="M24,14h60c5.52,0 10,4.48 10,10v60c0,5.52 -4.48,10 -10,10h-60c-5.52,0 -10,-4.48 -10,-10v-60c0,-5.52 4.48,-10 10,-10z" />
+    <!-- Gradient accent circle -->
+    <path
+        android:fillColor="#06B6D4"
+        android:pathData="M68,26a14,14 0 1,0 0.001,0z" />
+    <!-- Modern Arrows / Ledger glyph -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M38,44l12,-12l12,12l-4,4l-5,-5l0,28l-6,0l0,-28l-5,5z" />
+    <path
+        android:fillColor="#A5F3FC"
+        android:pathData="M70,64l-12,12l-12,-12l4,-4l5,5l0,-28l6,0l0,28l5,-5z" />
+</vector>

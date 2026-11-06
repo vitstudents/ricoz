@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">LedgerAI</string>
+    <string name="app_tagline">Continuous Financial Bookkeeper</string>
+    
+    <!-- Navigation Tabs -->
+    <string name="nav_overview">Overview</string>
+    <string name="nav_transactions">Transactions</string>
+    <string name="nav_reconcile">Reconcile</string>
+    <string name="nav_anomalies">Anomalies</string>
+    <string name="nav_journals">Journals</string>
+    <string name="nav_assistant">AI Copilot</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Biometrics & Security -->
+    <string name="biometric_title">CPA Biometric Approval</string>
+    <string name="biometric_subtitle">Confirm identity to post closing journal entries to general ledger</string>
+    <string name="biometric_cancel">Cancel</string>
+
+    <!-- Notifications -->
+    <string name="channel_anomalies_name">Financial Anomaly Alerts</string>
+    <string name="channel_anomalies_desc">Real-time alerts for duplicate charges, amount spikes, and GAAP outliers</string>
+</resources>
