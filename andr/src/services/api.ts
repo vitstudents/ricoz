@@ -159,3 +159,4 @@ export const apiService = {
     return `LedgerAI Financial Analysis:\nTotal multi-currency cash is $1,428,500.00 USD. ASC 830 foreign exchange remeasurements are fully reconciled with 0.00 trial balance debit/credit variance.`;
   },
 };
+

@@ -87,3 +87,4 @@ export interface AuditLog {
   details: string;
   created_at: string;
 }
+

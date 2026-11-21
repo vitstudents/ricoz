@@ -77,3 +77,4 @@ EAS compiles the standalone APK in the cloud and provides a direct `.apk` downlo
 The mobile app connects out-of-the-box to the production LedgerAI API on Vercel:
 - **Cloud Endpoint**: `https://work-hazel-one.vercel.app/api/v1`
 - Includes automatic offline caching and graceful fallback.
+

@@ -26,3 +26,4 @@ export const colors = {
   gbp: '#A855F7',
   inr: '#F59E0B',
 };
+
